@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.sitename {
+  font-size: 2em;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1em;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.tags li {
+  text-align: left;
+}

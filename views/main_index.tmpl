@@ -1,0 +1,24 @@
+<mt:include module="設定" />
+<mt:setvar name="is_site_home" value="1" />
+<mt:var name="site_description" setvar="page_description" />
+<mt:includeblock module="基本レイアウト">
+  <main>
+    <section>
+      <h2>最近のQ&amp;A</h2>
+      <mt:entries sort_by="published_on" sort_order="descend" limit="10">
+        <mt:if name="__first__"><ul></mt:if>
+        <li><time datetime="<mt:entrypublishedon format_ts="Y-m-d" />"><mt:entrypublishedon format_ts="Y年n月j日" /></time> <a href="<mt:entrypermalink relative escape />"><mt:entrytitle escape /></a></li>
+        <mt:if name="__last__"></ul></mt:if>
+      </mt:entries>
+      <div><a href="/article/index.html">記事一覧ページ</a></div>
+    </section>
+    <section>
+      <h2>タグ一覧</h2>
+      <mt:tags>
+        <mt:if name="__first__"><ul></mt:if>
+        <mt:if tag="entriescount"><li><a href="/article/tags/<mt:tagbasename encode_url />/">#<mt:tagname escape /></a></li></mt:if>
+        <mt:if name="__last__"></ul></mt:if>
+      </mt:tags>
+    </section>
+  </main>
+</mt:includeblock>

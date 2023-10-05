@@ -1,0 +1,31 @@
+<mt:include module="設定" />
+<mt:entrytitle setvar="page_title" />
+<mt:if tag="entryexcerpt"><mt:setvarblock name="page_description">PowerCMS Xに関するQ&Aのサイト。<mt:entryexcerpt /></mt:setvarblock></mt:if>
+<mt:includeblock module="基本レイアウト">
+  <main>
+    <article itemscope itemtype="http://schema.org/TechArticle">
+      <header>
+        <h1 itemprop="headline"><mt:entrytitle escape /></h1>
+        <div><time itemprop="datePublished" datetime="<mt:entrypublishedon format_ts="Y-m-d" />"><mt:entrypublishedon format_ts="Y年n月j日" /></time></div>
+        <mt:entrytags>
+          <mt:if name="__first__"><ul class="tags"></mt:if>
+          <li><a href="/article/tags/<mt:tagbasename encode_url />/">#<mt:tagname escape /></a></li>
+          <mt:if name="__last__"></ul></mt:if>
+        </mt:entrytags>
+      </header>
+      <div itemprop="articleBody">
+        <mt:entrytext convert_breaks="auto" />
+        <mt:entryblockedit from_json="blocks" />
+        <mt:loop name="blocks">
+          <mt:if name="type" eq="FAQText">
+            <mt:var name="text" />
+          <mt:elseif name="type" eq="FAQMarkdown">
+            <mt:var name="text" convert_breaks="markdown" />
+          <mt:else name="type" eq="FAQCode">
+            <pre><code><mt:var name="code" escape /></code></pre>
+          </mt:if>
+        </mt:loop>
+      </div>
+    </article>
+  </main>
+</mt:includeblock>

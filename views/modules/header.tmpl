@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <mt:if name="page_description"><meta name="description" content="<mt:var name="page_description" escape />"></mt:if>
+  <title><mt:if name="page_title"><mt:var name="page_title" escape /> | </mt:if><mt:var name="site_name" escape /></title>
+  <link rel="stylesheet" href="/assets/css/mvp.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B146JG4WPE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B146JG4WPE');
+  </script>
+</head>
+<body>
+  <header>
+    <mt:if name="is_site_home">
+      <h1><mt:var name="site_name" escape /></h1>
+      <p><mt:var name="site_description" escape /></p>
+    <mt:else>
+      <div class="sitename"><b><mt:var name="site_name" escape /></b></div>
+      <p><mt:var name="site_description" escape /></p>
+      <nav>
+        <ul>
+          <li><a href="/">ホーム</a></li>
+          <li><a href="/article/">記事一覧</a></li>
+        </ul>
+      </nav>
+    </mt:if>
+  </header>

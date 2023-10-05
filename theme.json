@@ -1,0 +1,177 @@
+{
+    "label": "netheroes-faq",
+    "id": "netheroes_faq",
+    "version": "",
+    "author": "",
+    "author_link": "",
+    "description": "",
+    "repository": "https://github.com/hideki-a/pcmsx-theme-netheroes-faq.git",
+    "objects": [],
+    "component": "",
+    "views": {
+        "0a7d92bd-ef56-4978-a99a-d942dca47b8a": {
+            "name": "設定",
+            "subject": "",
+            "status": "2",
+            "class": "Module",
+            "basename": "settings",
+            "linked_file": "%t/modules/settings.tmpl"
+        },
+        "c6695034-79be-4aa1-a65c-1519bc8c4f74": {
+            "name": "基本レイアウト",
+            "subject": "",
+            "status": "2",
+            "class": "Module",
+            "basename": "basic_layout",
+            "linked_file": "%t/modules/basic_layout.tmpl"
+        },
+        "5a56131e-5b93-45bf-8c2f-a12289bf7268": {
+            "name": "ヘッダー",
+            "subject": "",
+            "status": "2",
+            "class": "Module",
+            "basename": "header",
+            "linked_file": "%t/modules/header.tmpl"
+        },
+        "0cc73043-a077-42a6-9de5-9b2c9cbbfb62": {
+            "name": "フッター",
+            "subject": "",
+            "status": "2",
+            "class": "Module",
+            "basename": "footer",
+            "linked_file": "%t/modules/footer.tmpl"
+        },
+        "d480cf99-cb9f-44b3-9510-516de0e2b9a1": {
+            "name": "メインページ",
+            "subject": "",
+            "status": "2",
+            "class": "Archive",
+            "basename": "main_index",
+            "linked_file": "%t/main_index.tmpl",
+            "urlmappings": [
+                {
+                    "name": "メインページ",
+                    "model": "template",
+                    "mapping": "index.html",
+                    "container": "entry",
+                    "container_scope": "1",
+                    "skip_empty": "0",
+                    "trigger_scope": "1",
+                    "date_based": "",
+                    "fiscal_start": "1",
+                    "publish_file": "1"
+                }
+            ]
+        },
+        "4410ad8c-5792-4229-bcef-ecda3d7b5840": {
+            "name": "記事一覧",
+            "subject": "",
+            "status": "2",
+            "class": "Archive",
+            "basename": "entry_list",
+            "linked_file": "%t/entry_list.tmpl",
+            "urlmappings": [
+                {
+                    "name": "記事一覧",
+                    "model": "template",
+                    "mapping": "article/index.html",
+                    "container": "entry",
+                    "container_scope": "1",
+                    "skip_empty": "0",
+                    "trigger_scope": "1",
+                    "date_based": "",
+                    "fiscal_start": "1",
+                    "publish_file": "1"
+                }
+            ]
+        },
+        "4f659225-7199-42e4-bcb5-f5145f83f1f3": {
+            "name": "タグ別記事一覧",
+            "subject": "",
+            "status": "2",
+            "class": "Archive",
+            "basename": "entry_list_by_tag",
+            "linked_file": "%t/entry_list_by_tag.tmpl",
+            "urlmappings": [
+                {
+                    "name": "タグ別記事一覧",
+                    "model": "tag",
+                    "mapping": "article/tags/<mt:tagbasename />/index.html",
+                    "container": "entry",
+                    "container_scope": "1",
+                    "skip_empty": "0",
+                    "trigger_scope": "1",
+                    "date_based": "",
+                    "fiscal_start": "1",
+                    "publish_file": "1"
+                }
+            ]
+        },
+        "c4682cad-1df8-4580-9634-a4ae9ec96883": {
+            "name": "記事",
+            "subject": "",
+            "status": "2",
+            "class": "Archive",
+            "basename": "entry_detail",
+            "linked_file": "%t/entry_detail.tmpl",
+            "urlmappings": [
+                {
+                    "name": "記事詳細",
+                    "model": "entry",
+                    "mapping": "article/<mt:entryid />.html",
+                    "container": "",
+                    "container_scope": "1",
+                    "skip_empty": "0",
+                    "trigger_scope": "1",
+                    "date_based": "",
+                    "fiscal_start": "1",
+                    "publish_file": "1"
+                }
+            ]
+        },
+        "8160e995-2e7e-45d3-9567-9b6e6ba39e40": {
+            "name": "MVP.css",
+            "subject": "",
+            "status": "2",
+            "class": "Archive",
+            "basename": "mvp_css",
+            "linked_file": "%t/mvp.css",
+            "urlmappings": [
+                {
+                    "name": "MVP.css",
+                    "model": "template",
+                    "mapping": "assets/css/mvp.min.css",
+                    "container": "",
+                    "container_scope": "1",
+                    "skip_empty": "0",
+                    "trigger_scope": "1",
+                    "date_based": "",
+                    "fiscal_start": "1",
+                    "publish_file": "1"
+                }
+            ]
+        },
+        "90394ba6-98dc-4a9e-8c95-c61afb4801ac": {
+            "name": "style.css",
+            "subject": "",
+            "status": "2",
+            "class": "Archive",
+            "basename": "style_css",
+            "linked_file": "%t/style.css",
+            "urlmappings": [
+                {
+                    "name": "style.css",
+                    "model": "template",
+                    "mapping": "assets/css/style.css",
+                    "container": "",
+                    "container_scope": "1",
+                    "skip_empty": "0",
+                    "trigger_scope": "1",
+                    "date_based": "",
+                    "fiscal_start": "1",
+                    "publish_file": "1"
+                }
+            ]
+        }
+    }
+}

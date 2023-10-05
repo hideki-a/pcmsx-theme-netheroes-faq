@@ -1,0 +1,15 @@
+<mt:include module="設定" />
+<mt:setvarblock name="page_description">PowerCMS X Q&Aの一覧です。</mt:setvarblock>
+<mt:setvar name="page_title" value="Q&A一覧" />
+<mt:includeblock module="基本レイアウト">
+  <main>
+    <section>
+      <h1><mt:var name="page_title" escape /></h1>
+      <mt:entries sort_by="published_on" sort_order="descend">
+        <mt:if name="__first__"><ul></mt:if>
+        <li><time datetime="<mt:entrypublishedon format_ts="Y-m-d" />"><mt:entrypublishedon format_ts="Y年n月j日" /></time> <a href="<mt:entrypermalink relative escape />"><mt:entrytitle escape /></a></li>
+        <mt:if name="__last__"></ul></mt:if>
+      </mt:entries>
+    </section>
+  </main>
+</mt:includeblock>
