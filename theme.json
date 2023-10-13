@@ -53,13 +53,10 @@
                     "name": "メインページ",
                     "model": "template",
                     "mapping": "index.html",
+                    "publish_file": "1",
                     "container": "entry",
                     "container_scope": "1",
-                    "skip_empty": "0",
-                    "trigger_scope": "1",
-                    "date_based": "",
-                    "fiscal_start": "1",
-                    "publish_file": "1"
+                    "trigger_scope": "1"
                 }
             ]
         },
@@ -170,6 +167,42 @@
                     "date_based": "",
                     "fiscal_start": "1",
                     "publish_file": "1"
+                }
+            ]
+        },
+        "c2da9e99-7a6a-437d-9553-36b5fe4003d6": {
+            "name": "Bootstrapper",
+            "subject": "",
+            "status": "2",
+            "basename": "pt_view_php",
+            "class": "Archive",
+            "linked_file": "%t/pt-view.php.tmpl",
+            "urlmappings": [
+                {
+                    "name": "Bootstrapper",
+                    "model": "template",
+                    "mapping": "pt-view.php",
+                    "publish_file": "5",
+                    "container_scope": "1",
+                    "trigger_scope": "1"
+                }
+            ]
+        },
+        "cde9f36b-cf9c-4be0-966c-1e33259b0639": {
+            "name": "検索結果（Mroonga）",
+            "subject": "",
+            "status": "2",
+            "basename": "mroonga_search_result",
+            "class": "Archive",
+            "linked_file": "%t/search/mroonga.tmpl",
+            "urlmappings": [
+                {
+                    "name": "検索結果（Mroonga）",
+                    "model": "template",
+                    "mapping": "search/mroonga.html",
+                    "publish_file": "6",
+                    "container_scope": "1",
+                    "trigger_scope": "1"
                 }
             ]
         }
