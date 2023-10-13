@@ -5,7 +5,7 @@
   <main>
     <section>
       <h2>最近のQ&amp;A</h2>
-      <mt:entries sort_by="published_on" sort_order="descend" limit="10">
+      <mt:entries sort_by="published_on" sort_order="descend" limit="5">
         <mt:if name="__first__"><ul></mt:if>
         <li><time datetime="<mt:entrypublishedon format_ts="Y-m-d" />"><mt:entrypublishedon format_ts="Y年n月j日" /></time> <a href="<mt:entrypermalink relative escape />"><mt:entrytitle escape /></a></li>
         <mt:if name="__last__"></ul></mt:if>
@@ -20,5 +20,15 @@
         <mt:if name="__last__"></ul></mt:if>
       </mt:tags>
     </section>
+    <search>
+      <form method="get" action="/search/mroonga.html">
+        <h2>サイト内検索</h2>
+        <input type="hidden" name="_filter" value="entry">
+        <div>
+          <label>キーワード <input type="search" name="keyword"></label>
+          <button type="submit">検索</button>
+        </div>
+      </form>
+    </search>
   </main>
 </mt:includeblock>
