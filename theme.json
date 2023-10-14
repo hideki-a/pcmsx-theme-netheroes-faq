@@ -94,13 +94,10 @@
                     "name": "タグ別記事一覧",
                     "model": "tag",
                     "mapping": "article/tags/<mt:tagbasename />/index.html",
+                    "publish_file": "1",
                     "container": "entry",
                     "container_scope": "1",
-                    "skip_empty": "0",
-                    "trigger_scope": "1",
-                    "date_based": "",
-                    "fiscal_start": "1",
-                    "publish_file": "1"
+                    "trigger_scope": "1"
                 }
             ]
         },
