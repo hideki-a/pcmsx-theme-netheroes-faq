@@ -16,6 +16,23 @@
   text-align: left;
 }
 
+.snippets {
+  font-size: 0.875em;
+}
+
+.snippets div {
+  display: inline;
+}
+
+.snippets div:not(:first-child) {
+  margin-inline-start: 1em;
+}
+
+.snippets mark {
+  background:linear-gradient(transparent 60%, #ff6 75%);
+  font-weight: bold;
+}
+
 @media screen and (min-width: 50em) {
   article h1 {
     font-size: 1.75em;
