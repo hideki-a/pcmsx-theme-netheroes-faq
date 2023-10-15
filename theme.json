@@ -135,13 +135,9 @@
                     "name": "MVP.css",
                     "model": "template",
                     "mapping": "assets/css/mvp.min.css",
-                    "container": "",
+                    "publish_file": "1",
                     "container_scope": "1",
-                    "skip_empty": "0",
-                    "trigger_scope": "1",
-                    "date_based": "",
-                    "fiscal_start": "1",
-                    "publish_file": "1"
+                    "trigger_scope": "1"
                 }
             ]
         },
@@ -157,13 +153,9 @@
                     "name": "style.css",
                     "model": "template",
                     "mapping": "assets/css/style.css",
-                    "container": "",
+                    "publish_file": "1",
                     "container_scope": "1",
-                    "skip_empty": "0",
-                    "trigger_scope": "1",
-                    "date_based": "",
-                    "fiscal_start": "1",
-                    "publish_file": "1"
+                    "trigger_scope": "1"
                 }
             ]
         },
