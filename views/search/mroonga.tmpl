@@ -10,7 +10,16 @@
           <p><a href="https://mroonga.org/ja/">Mroonga</a>の検索スコア順に結果を表示します。</p>
           <ul>
         </mt:if>
-        <li><a href="<mt:entrypermalink relative escape />"><mt:entrytitle escape /></a></li>
+        <li>
+          <a href="<mt:entrypermalink relative escape />"><mt:entrytitle escape /></a>
+          <mt:if name="mroonga_snippet">
+            <mt:setvarblock name="snippet_search_cond">/\n?\s*<span[^>]+>([^<]+)<\/span>/u</mt:setvarblock>
+            <mt:setvarblock name="snippet_replace"><mark>$1</mark></mt:setvarblock>
+            <mt:var name="mroonga_snippet" regex_replace="'/\n/u',''" setvar="_mroonga_snippet" />
+            <mt:var name="_mroonga_snippet" regex_replace="'$snippet_search_cond','$snippet_replace'" setvar="_mroonga_snippet" />
+            <div class="snippets"><mt:var name="_mroonga_snippet" /></div>
+          </mt:if>
+        </li>
         <mt:if name="__last__"></ul></mt:if>
       <mt:else>
         <mt:if name="request.keyword">
