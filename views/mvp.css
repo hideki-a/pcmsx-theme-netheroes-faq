@@ -280,16 +280,24 @@ sup {
 /* Links */
 a {
     color: var(--color-link);
+    text-decoration: underline;
+}
+
+header a {
     display: inline-block;
     font-weight: bold;
-    text-decoration: underline;
+}
+
+a:visited {
+    color: #822694;
 }
 
 a:active {
     filter: brightness(var(--active-brightness));
 }
 
-a:hover {
+a:hover,
+a:focus{
     filter: brightness(var(--hover-brightness));
 }
 
