@@ -1,0 +1,74 @@
+<mt:phpstart>
+<mt:include module="設定" />
+require_once '<mt:var name="prototype_path" />/class.Prototype.php';
+
+class SimilarSearch {
+    private $app;
+    private $available_models = [ 'entry' ];
+
+    public function __construct() {
+        $this->app = new Prototype( [ 'id' => 'PTMroonga' ] );
+        $this->app->init();
+    }
+
+    public function run() {
+        $object_id = (int) $this->app->param( 'id' );
+        $model = $this->app->param( 'model' ) ? $this->app->param( 'model' ) : 'entry';
+        $workspace_id = $this->app->param( 'workspace_id' ) ? (int) $this->app->param( 'workspace_id' ) : 5;
+
+        if ( ! isset( $object_id ) ||  ! in_array( $model, $this->available_models, true ) ) {
+            // TODO: エラーメッセージを返す
+            return;
+        }
+
+        $table = $this->app->get_table( $model );
+        if ( ! $table ) {
+            // TODO: エラーメッセージを返す
+            return;
+        }
+
+        $object = $this->app->db->model( $model )->load( $object_id );
+        if ( empty( $object ) ) {
+            return;
+        } elseif ( (int) $object->workspace_id !== $workspace_id ) {
+            return;
+        }
+
+        $content = preg_replace( '/\n/u', '', $object->search_text );
+        $query = <<<EOQ
+SELECT `entry_id`, `entry_title`, `entry_workspace_id`, MATCH( `entry_title`, `entry_search_text` ) AGAINST (? IN NATURAL LANGUAGE MODE) AS score
+  FROM `mt_entry`
+  WHERE MATCH( `entry_title`, `entry_search_text` ) AGAINST (? IN NATURAL LANGUAGE MODE)
+    AND `entry_id` != ? AND `entry_status` = 4 AND `entry_rev_type` = 0 AND `entry_workspace_id` = ?
+  ORDER BY score DESC
+  LIMIT 3;
+EOQ;
+        $values = [ $content, $content, $object_id, $workspace_id ];
+        $similar_objects = $this->app->db->model( $model )->load( $query, $values );
+
+        $response = [
+            'totalResults' => empty( $similar_objects ) ? 0 : count( $similar_objects ),
+            'items' => [],
+        ];
+        if ( ! empty( $similar_objects ) ) {
+            foreach ( $similar_objects as $object ) {
+                $response[ 'items' ][] = (object) [
+                    'id' => $object->id,
+                    'title' => $object->title,
+                    'score' => $object->score,
+                    'permalink' => $this->app->get_permalink( $object ),
+                ];
+            }
+        }
+
+        header( 'Content-Type: application/json; charset=utf-8' );
+        header( 'Cache-Control: no-store, no-cache, must-revalidate, max-age=0' );
+        header( 'Cache-Control: post-check=0, pre-check=0', false );
+        header( 'Pragma: no-cache' );
+        echo json_encode( $response );
+    }
+
+}
+
+$similar_search = new SimilarSearch();
+$similar_search->run();
