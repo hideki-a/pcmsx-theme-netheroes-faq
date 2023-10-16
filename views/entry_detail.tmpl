@@ -26,6 +26,18 @@
           </mt:if>
         </mt:loop>
       </div>
+      <div id="similar_entries">
+        <h2>関連するQ&amp;A</h2>
+        <ul></ul>
+      </div>
+      <script>
+        if (typeof window.netHeroes === 'undefined') {
+          window.netHeroes = {};
+        }
+        window.netHeroes.entryId = <mt:entryid />;
+        window.netHeroes.workspaceId = <mt:workspaceid />;
+      </script>
+      <script src="/js/similar_entries.js"></script>
     </article>
   </main>
 </mt:includeblock>
