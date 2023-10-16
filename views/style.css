@@ -33,6 +33,10 @@
   font-weight: bold;
 }
 
+#similar_entries {
+  display: none;
+}
+
 @media screen and (min-width: 50em) {
   article h1 {
     font-size: 1.75em;
