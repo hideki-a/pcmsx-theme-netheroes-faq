@@ -113,13 +113,9 @@
                     "name": "記事詳細",
                     "model": "entry",
                     "mapping": "article/<mt:entryid />.html",
-                    "container": "",
+                    "publish_file": "1",
                     "container_scope": "1",
-                    "skip_empty": "0",
-                    "trigger_scope": "1",
-                    "date_based": "",
-                    "fiscal_start": "1",
-                    "publish_file": "1"
+                    "trigger_scope": "1"
                 }
             ]
         },
@@ -190,6 +186,42 @@
                     "model": "template",
                     "mapping": "search/mroonga.html",
                     "publish_file": "6",
+                    "container_scope": "1",
+                    "trigger_scope": "1"
+                }
+            ]
+        },
+        "6f364fd0-7acb-43d2-a9b0-93f131943f6b": {
+            "name": "類似オブジェクト検索",
+            "subject": "",
+            "status": "2",
+            "basename": "similar_search",
+            "class": "Archive",
+            "linked_file": "%t/resources/similar_search.php.tmpl",
+            "urlmappings": [
+                {
+                    "name": "類似オブジェクト検索",
+                    "model": "template",
+                    "mapping": "resources/similar_search.php",
+                    "publish_file": "5",
+                    "container_scope": "1",
+                    "trigger_scope": "1"
+                }
+            ]
+        },
+        "9fd343e5-e87f-41d3-8159-2f6b7aeac3f7": {
+            "name": "関連記事の読み込みスクリプト",
+            "subject": "",
+            "status": "2",
+            "basename": "get_similar_entries",
+            "class": "Archive",
+            "linked_file": "%t/get_similar_entries.js",
+            "urlmappings": [
+                {
+                    "name": "関連記事の読み込みスクリプト",
+                    "model": "template",
+                    "mapping": "js/similar_entries.js",
+                    "publish_file": "5",
                     "container_scope": "1",
                     "trigger_scope": "1"
                 }
