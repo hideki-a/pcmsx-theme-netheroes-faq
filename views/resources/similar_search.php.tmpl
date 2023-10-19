@@ -16,7 +16,7 @@ class SimilarSearch {
         $model = $this->app->param( 'model' ) ? $this->app->param( 'model' ) : 'entry';
         $workspace_id = $this->app->param( 'workspace_id' ) ? (int) $this->app->param( 'workspace_id' ) : 5;
 
-        if ( ! isset( $object_id ) ||  ! in_array( $model, $this->available_models, true ) ) {
+        if ( ! isset( $object_id ) || ! in_array( $model, $this->available_models, true ) ) {
             // TODO: エラーメッセージを返す
             return;
         }
@@ -36,18 +36,41 @@ class SimilarSearch {
 
         $content = preg_replace( '/\n/u', '', $object->search_text );
         $query = <<<EOQ
-SELECT `entry_id`, `entry_title`, `entry_workspace_id`, MATCH( `entry_title`, `entry_search_text` ) AGAINST (? IN NATURAL LANGUAGE MODE) AS score
+SELECT `entry_id`, `entry_title`, `entry_workspace_id`, MATCH( `entry_search_text` ) AGAINST (? IN NATURAL LANGUAGE MODE) AS score
   FROM `mt_entry`
-  WHERE MATCH( `entry_title`, `entry_search_text` ) AGAINST (? IN NATURAL LANGUAGE MODE)
+  WHERE MATCH( `entry_search_text` ) AGAINST (? IN NATURAL LANGUAGE MODE)
     AND `entry_id` != ? AND `entry_status` = 4 AND `entry_rev_type` = 0 AND `entry_workspace_id` = ?
   ORDER BY score DESC
   LIMIT 3;
 EOQ;
         $values = [ $content, $content, $object_id, $workspace_id ];
         $similar_objects = $this->app->db->model( $model )->load( $query, $values );
+        $result_count = empty( $similar_objects ) ? 0 : count( $similar_objects );
+
+        if ( $result_count < 3 && $object->search_keywords ) {
+            $limit = 3 - $result_count;
+            $exclude_ids = array_map( fn( $object ) => $object->id, $similar_objects );
+            array_push( $exclude_ids, $object_id );
+            $keywords = str_replace( ',', ' ', $object->search_keywords );
+            $query = <<<EOQ
+SELECT `entry_id`, `entry_title`, `entry_workspace_id`, MATCH( `entry_search_text` ) AGAINST (? IN BOOLEAN MODE) AS score
+  FROM `mt_entry`
+  WHERE MATCH( `entry_search_text` ) AGAINST (? IN BOOLEAN MODE)
+    AND `entry_id` NOT IN (==IDs==) AND `entry_status` = 4 AND `entry_rev_type` = 0 AND `entry_workspace_id` = ?
+  ORDER BY score DESC
+  LIMIT 3;
+EOQ;
+            $values = [ $keywords, $keywords, $workspace_id ];
+            $query = str_replace( '==IDs==', implode( ',', $exclude_ids ), $query ); // todo: より安全な方法はないか
+            $similar_objects_by_keywords = $this->app->db->model( $model )->load( $query, $values );
+
+            if ( ! empty( $similar_objects_by_keywords ) ) {
+                $result_count += count( $similar_objects_by_keywords );
+            }
+        }
 
         $response = [
-            'totalResults' => empty( $similar_objects ) ? 0 : count( $similar_objects ),
+            'totalResults' => $result_count,
             'items' => [],
         ];
         if ( ! empty( $similar_objects ) ) {
@@ -57,6 +80,18 @@ EOQ;
                     'title' => $object->title,
                     'score' => $object->score,
                     'permalink' => $this->app->get_permalink( $object ),
+                    'type' => 'similar',
+                ];
+            }
+        }
+        if ( ! empty( $similar_objects_by_keywords ) ) {
+            foreach ( $similar_objects_by_keywords as $object ) {
+                $response[ 'items' ][] = (object) [
+                    'id' => $object->id,
+                    'title' => $object->title,
+                    'score' => $object->score,
+                    'permalink' => $this->app->get_permalink( $object ),
+                    'type' => 'keywords',
                 ];
             }
         }
@@ -72,3 +107,4 @@ EOQ;
 
 $similar_search = new SimilarSearch();
 $similar_search->run();
+
