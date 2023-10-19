@@ -22,14 +22,16 @@
           <mt:elseif name="type" eq="FAQMarkdown">
             <mt:var name="text" convert_breaks="markdown" />
           <mt:else name="type" eq="FAQCode">
-            <pre><code><mt:var name="code" escape /></code></pre>
+            <pre><code tabindex="0"><mt:var name="code" escape /></code></pre>
           </mt:if>
         </mt:loop>
       </div>
-      <section id="similar_entries">
-        <h2>関連するQ&amp;A</h2>
-        <ul></ul>
-      </section>
+      <footer>
+        <section id="similar_entries">
+          <h2>関連するQ&amp;A</h2>
+          <ul></ul>
+        </section>
+      </footer>
       <script>
         if (typeof window.netHeroes === 'undefined') {
           window.netHeroes = {};
