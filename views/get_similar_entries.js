@@ -3,13 +3,13 @@
     const { entryId, workspaceId } = window.netHeroes;
 
     try {
-        const response = await fetch(`/resources/similar_search.php?id=${entryId}&workspace_id=${workspaceId}`)
+        const response = await fetch(`/resources/similar_search.php?id=${entryId}&workspace_id=${workspaceId}`);
 
         if (!response.ok) {
-            throw new Error('Bad fetch response')
+            throw new Error('Bad fetch response');
         }
 
-        similarEntries = await response.json()
+        similarEntries = await response.json();
     } catch (err) {
         // Handle the error
     }
