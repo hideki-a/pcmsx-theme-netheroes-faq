@@ -5,7 +5,7 @@
   <main>
     <section>
       <h2>最近のQ&amp;A</h2>
-      <mt:entries sort_by="published_on" sort_order="descend" limit="5">
+      <mt:entries cols="title,published_on,workspace_id" sort_by="published_on" sort_order="descend" limit="5">
         <mt:if name="__first__"><ul></mt:if>
         <li><time datetime="<mt:entrypublishedon format_ts="Y-m-d" />"><mt:entrypublishedon format_ts="Y年n月j日" /></time> <a href="<mt:entrypermalink relative escape />"><mt:entrytitle escape /></a></li>
         <mt:if name="__last__"></ul></mt:if>
@@ -17,7 +17,7 @@
     </section>
     <section>
       <h2>タグ一覧</h2>
-      <mt:tags>
+      <mt:tags cols="name,basename">
         <mt:if name="__first__"><ul class="tags"></mt:if>
         <mt:if tag="entriescount"><li><a href="/article/tags/<mt:tagbasename encode_url />/">#<mt:tagname escape /></a></li></mt:if>
         <mt:if name="__last__"></ul></mt:if>
