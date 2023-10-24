@@ -5,10 +5,36 @@
   <main>
     <section>
       <h1><mt:var name="page_title" escape /></h1>
-      <mt:entries sort_by="published_on" sort_order="descend">
-        <mt:if name="__first__"><ul></mt:if>
-        <li><time datetime="<mt:entrypublishedon format_ts="Y-m-d" />"><mt:entrypublishedon format_ts="Y年n月j日" /></time> <a href="<mt:entrypermalink relative escape />"><mt:entrytitle escape /></a></li>
-        <mt:if name="__last__"></ul></mt:if>
+      <mt:entries cols="title,excerpt,workspace_id" sort_by="published_on" sort_order="descend" _split="1">
+        <mt:if name="__first__"><ul class="list-qa"></mt:if>
+        <li>
+          <a href="<mt:entrypermalink relative escape />"><mt:entrytitle escape /></a>
+          <p class="excerpt"><mt:entryexcerpt escape /></p>
+        </li>
+        <mt:if name="__last__">
+          </ul>
+          <mt:pager nums="5">
+            <mt:if name="__first__">
+              <ul>
+                <mt:ifpagerprev>
+                  <li><a href="<mt:pagerprevlink escape />">&lsaquo; 前のページ</a></li>
+                </mt:ifpagerprev>
+            </mt:if>
+            <li>
+              <mt:ifpagercurrent>
+                <em><mt:pagercounter></em>
+              <mt:else>
+                <a href="<mt:pagerlink escape />"><mt:pagercounter /></a>
+              </mt:ifpagercurrent>
+            </li>
+            <mt:if name="__last__">
+                <mt:ifpagernext>
+                  <li><a href="<mt:pagernextlink escape />">&rsaquo; 次のページ</a></li>
+                </mt:ifpagernext>
+              </ul>
+            </mt:if>
+          </mt:pager>
+        </mt:if>
       </mt:entries>
     </section>
   </main>
