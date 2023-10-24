@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<mt:include module="設定" />
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns="http://purl.org/rss/1.0/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <mt:entries cols="title,excerpt,published_on,workspace_id" limit="10" sort_by="published_on" sort_order="descend">
+    <mt:setvarblock name="rdf_seq_li" function="push"><rdf:li resource="<mt:entrypermalink escape />" /></mt:setvarblock>
+    <mt:setvarblock name="rdf_item" function="push">
+      <item rdf:about="<mt:entrypermalink escape />">
+        <title><mt:entrytitle escape /></title>
+        <link><mt:entrypermalink escape /></link>
+        <description><mt:entryexcerpt escape /></description>
+      </item>
+    </mt:setvarblock>
+  </mt:entries>
+
+  <channel rdf:about="<mt:websiteurl escape />article/">
+    <title><mt:var name="site_name" escape /></title>
+    <link><mt:websiteurl escape />article/</link>
+    <description><mt:var name="site_description" escape /></description>
+    <dc:language>ja</dc:language>
+    <dc:creator>Abe, Hideki</dc:creator>
+    <dc:date><mt:date format_ts="c" /></dc:date>
+
+    <items>
+      <rdf:Seq>
+        <mt:loop name="rdf_seq_li">
+          <mt:var name="__value__" />
+        </mt:loop>
+      </rdf:Seq>
+    </items>
+  </channel>
+  
+  <mt:loop name="rdf_item">
+    <mt:var name="__value__" />
+  </mt:loop>
+</rdf:RDF>
