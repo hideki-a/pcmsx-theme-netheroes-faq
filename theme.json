@@ -226,6 +226,25 @@
                     "trigger_scope": "1"
                 }
             ]
+        },
+        "b7b97962-d32a-4bea-b1bc-f2db8fbee3b4": {
+            "name": "RSS",
+            "subject": "",
+            "status": "2",
+            "basename": "rss",
+            "class": "Archive",
+            "linked_file": "%t/rss.tmpl",
+            "urlmappings": [
+                {
+                    "name": "RSS",
+                    "model": "template",
+                    "mapping": "index.rdf",
+                    "publish_file": "1",
+                    "container": "entry",
+                    "container_scope": "1",
+                    "trigger_scope": "1"
+                }
+            ]
         }
     }
 }
