@@ -235,9 +235,27 @@
                 {
                     "name": "RSS",
                     "model": "template",
-                    "mapping": "index.rdf",
+                    "mapping": "article/index.rdf",
                     "publish_file": "1",
                     "container": "entry",
+                    "container_scope": "1",
+                    "trigger_scope": "1"
+                }
+            ]
+        },
+        "4d604c7f-e0a1-4a52-9109-5353e042f4aa": {
+            "name": "HTTP 404",
+            "subject": "",
+            "status": "2",
+            "basename": "404-error",
+            "class": "Archive",
+            "linked_file": "%t/error/404.tmpl",
+            "urlmappings": [
+                {
+                    "name": "HTTP 404",
+                    "model": "template",
+                    "mapping": "error/404.html",
+                    "publish_file": "5",
                     "container_scope": "1",
                     "trigger_scope": "1"
                 }
