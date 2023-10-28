@@ -5,7 +5,7 @@
   <main>
     <section>
       <h1><mt:var name="page_title" escape /></h1>
-      <mt:entries cols="title,excerpt,workspace_id" sort_by="published_on" sort_order="descend" _split="1">
+      <mt:entries cols="title,excerpt" sort_by="published_on" sort_order="descend" _split="1">
         <mt:if name="__first__"><ul class="list-qa"></mt:if>
         <li>
           <a href="<mt:entrypermalink relative escape />"><mt:entrytitle escape /></a>
