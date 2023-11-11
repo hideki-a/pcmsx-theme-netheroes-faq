@@ -1,1 +1,9 @@
-HTTP 404 Not Found
+<mt:include module="設定" />
+<mt:setvarblock name="page_title">HTTP 404 Not Found</mt:setvarblock>
+<mt:includeblock module="基本レイアウト">
+  <main>
+    <section>
+      <h1><mt:var name="page_title" escape /></h1>
+    </section>
+  </main>
+</mt:includeblock>
