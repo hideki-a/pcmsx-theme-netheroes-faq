@@ -28,6 +28,7 @@
           <p>キーワードを入力して検索してください。</p>
         </mt:if>
       </mt:entries>
+      <mt:if name="request.keyword"><mt:ifcookie name="pt-ignore-analytics"><mt:else><mt:accesstracking /></mt:ifcookie></mt:if>
       <form method="get" action="/search/mroonga.html">
         <input type="hidden" name="_filter" value="entry">
         <div>
